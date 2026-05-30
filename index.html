@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Flexbox Pricing Table</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sono:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: "serif", sans-serif;
+      background-color: #e9ecef;
+      margin: 0;
+      padding: 40px 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .pricing-container {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      gap: 60px;
+      max-width: 1200px;
+      width: 100%;
+    }
+
+    /* Base Pricing Plan Card Styling */
+    .pricing-plan {
+      background-color: #ffffff;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      width: 320px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+
+    .pricing-plan:hover {
+      transform: translateX(-15px);
+    }
+
+    /* Card Header with Gradients mimicking the image */
+    .plan-header {
+      padding: 30px 20px 40px;
+      text-align: center;
+      color: white;
+      position: relative;
+    }
+
+    /* Color variations for each card tier */
+    .pricing-plan.basic .plan-header {
+      background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+      opacity: 0.8;
+    }
+
+    .pricing-plan.standard .plan-header {
+      background: linear-gradient(135deg, #b12ef3 0%, #7000ff 100%);
+      opacity: 0.8;
+    }
+
+    .pricing-plan.premium .plan-header {
+      background: linear-gradient(135deg, #f81f8f 0%, #fa709a 100%);
+      opacity: 0.8;
+    }
+
+    .plan-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin: 0 0 5px 0;
+    }
+
+    .plan-subtitle {
+      font-size: 1.25rem;
+      opacity: 0.9;
+      margin-bottom: 20px;
+    }
+
+    /* Hexagonal/Badge Style Price Tag container */
+    .price-badge {
+      background: white;
+      display: inline-block;
+      padding: 8px 30px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 1.6rem;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .pricing-plan.basic .price-badge {
+      color: #14bbfd;
+    }
+
+    .pricing-plan.standard .price-badge {
+      color: #8e19f7;
+    }
+
+    .pricing-plan.premium .price-badge {
+      color: #f92994;
+    }
+
+    /* Features List Layout */
+    .plan-features {
+      list-style: none;
+      padding: 30px 25px;
+      margin: 0;
+      flex-grow: 1;
+    }
+
+    .plan-features li {
+      padding: 12px 0;
+      color: #666;
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid #f1f1f1;
+    }
+
+    .plan-features li:last-child {
+      border-bottom: none;
+    }
+
+    .feature-icon {
+      margin-right: 12px;
+      font-size: 1.1rem;
+      display: inline-block;
+      transition: transform 0.2s ease;
+    }
+
+    .feature-icon:hover {
+      animation: bounceBackAndForth 0.8s ease-in-out;
+    }
+
+    .price-badge:hover {
+      animation: bounceBackAndForth 0.8s ease-in-out;
+    }
+
+    @keyframes bounceBackAndForth {
+      0% {
+        transform: translateX(0);
+      }
+
+      20% {
+        transform: translateY(6px);
+        /* Move forward */
+      }
+
+      40% {
+        transform: translateY(-4px);
+        /* Bounce backward past the starting point */
+      }
+
+      60% {
+        transform: translateY(4px);
+        /* Move forward slightly less */
+      }
+
+      80% {
+        transform: translateY(-2px);
+        /* Bounce backward slightly less */
+      }
+
+      100% {
+        transform: translateY(0);
+        /* Return smoothly to rest */
+      }
+    }
+
+    /* Bottom Action Buttons */
+    .button-container {
+      padding: 0 25px 35px;
+      text-align: center;
+    }
+
+    .plan-button {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      transition: opacity 0.2s ease;
+    }
+
+    .plan-button:hover {
+      opacity: 0.6;
+    }
+
+    .pricing-plan.basic .plan-button {
+      background: linear-gradient(to right, #4facfe, #00f2fe);
+    }
+
+    .pricing-plan.standard .plan-button {
+      background: linear-gradient(to right, #b12ef3, #7000ff);
+    }
+
+    .pricing-plan.premium .plan-button {
+      background: linear-gradient(to right, #f81f8f, #fa709a);
+    }
+
+    /* Responsive Media Query */
+    @media (max-width: 750px) {
+      .pricing-container {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="pricing-container">
+
+    <div class="pricing-plan basic">
+      <div class="plan-header">
+        <div class="plan-title">Basic</div>
+        <div class="plan-subtitle">Per Month</div>
+        <div class="price-badge">$11.99</div>
+      </div>
+      <ul class="plan-features">
+        <li><span class="feature-icon">🔹</span> 10GB Storage</li>
+        <li><span class="feature-icon">🔹</span> 1 User</li>
+        <li><span class="feature-icon">✖️</span> No Email Support</li>
+        <li><span class="feature-icon">✖️</span> No Phone Support</li>
+      </ul>
+      <div class="button-container">
+        <button class="plan-button">Join Now</button>
+      </div>
+    </div>
+
+    <div class="pricing-plan standard">
+      <div class="plan-header">
+        <div class="plan-title">Standard</div>
+        <div class="plan-subtitle">Per Month</div>
+        <div class="price-badge">$21.99</div>
+      </div>
+      <ul class="plan-features">
+        <li><span class="feature-icon">🔮</span> 50GB Storage</li>
+        <li><span class="feature-icon">🔮</span> 5 Users</li>
+        <li><span class="feature-icon">🔮</span> Email Support</li>
+        <li><span class="feature-icon">✖️</span> No Phone Support</li>
+      </ul>
+      <div class="button-container">
+        <button class="plan-button">Join Now</button>
+      </div>
+    </div>
+
+    <div class="pricing-plan premium">
+      <div class="plan-header">
+        <div class="plan-title">Premium</div>
+        <div class="plan-subtitle">Per Month</div>
+        <div class="price-badge">$31.99</div>
+      </div>
+      <ul class="plan-features">
+        <li><span class="feature-icon">🌸</span> 100GB Storage</li>
+        <li><span class="feature-icon">🌸</span> 10 Users</li>
+        <li><span class="feature-icon">🌸</span> Email Support</li>
+        <li><span class="feature-icon">🌸</span> Phone Support</li>
+      </ul>
+      <div class="button-container">
+        <button class="plan-button">Join Now</button>
+      </div>
+    </div>
+
+  </div>
+</body>
+
+</html>
